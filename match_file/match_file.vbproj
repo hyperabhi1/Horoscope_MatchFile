@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B178E829-9536-4492-8F07-D424859925F1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>match_file.DepthIn12Times</StartupObject>
+    <StartupObject>match_file.Counter12Parallel</StartupObject>
     <RootNamespace>match_file</RootNamespace>
     <AssemblyName>match_file</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -94,6 +94,7 @@
     <Compile Include="Chart_Gen1.vb" />
     <Compile Include="Chart_Gen2.vb" />
     <Compile Include="Chart_Gen2_Local.vb" />
+    <Compile Include="Counter12Parallel.vb" />
     <Compile Include="DepthIn12Times.vb" />
     <Compile Include="EmailNotify.vb" />
     <Compile Include="Match_File.vb" />
