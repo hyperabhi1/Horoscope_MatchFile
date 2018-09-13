@@ -951,14 +951,14 @@ Module MaxDepthMatch_file
                     Sub() Match_Key5(a8, c11, "11"),
                     Sub() Match_Key5(a8, c12, "12")
                 )
-                a8(0) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(1) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(2) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(3) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(4) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(5) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(6) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(7) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(0) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(1) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(2) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(3) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+                a8(4) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(5) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(6) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(7) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 Parallel.Invoke(
                     Sub() Match_Key5(a8, c01, "01"),
                     Sub() Match_Key5(a8, c02, "02"),

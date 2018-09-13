@@ -18,7 +18,8 @@ Module EmailNotify
             mail.Body += "<br><h1>Start Time: </h1>" + Time + "<br>"
         End If
         If flag = "end" Then
-            'mail.To.Add("vcdubai@yahoo.com")
+            mail.To.Add("vcdubai@yahoo.com")
+            mail.To.Add("vc_dubai@yahoo.com")
             'mail.To.Add("vcdubai@gmail.com")
             mail.Body += "<br><h1>Total Time: </h1>" + DateTime.Now.Subtract(Time).ToString() + "<br>"
             mail.Body += "<br><h3>Console Logs</h3><br>"

@@ -561,6 +561,7 @@ Module DepthIn12Times
             Try
                 Dim pa = m_planet
                 Dim m_key = RowsData.Tables(0).Rows(i)(0).Trim.ToString() + RowsData.Tables(0).Rows(i)(1).Trim.ToString() + RowsData.Tables(0).Rows(i)(2).Trim.ToString() + RowsData.Tables(0).Rows(i)(3).Trim.ToString() + RowsData.Tables(0).Rows(i)(4).Trim.ToString() + RowsData.Tables(0).Rows(i)(5).Trim.ToString() + RowsData.Tables(0).Rows(i)(6).Trim.ToString() + RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+
                 a8(0) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
                 a8(1) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
                 a8(2) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
@@ -569,14 +570,16 @@ Module DepthIn12Times
                 a8(5) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
                 a8(6) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 a8(7) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(8) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+
                 a8(9) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
                 a8(10) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
                 a8(11) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(12) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
                 a8(13) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
                 a8(14) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(14) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
                 a8(15) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+
                 a8(16) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
                 a8(17) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(18) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
@@ -585,6 +588,7 @@ Module DepthIn12Times
                 a8(21) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
                 a8(22) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
                 a8(23) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+
                 a8(24) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(25) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
                 a8(26) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
@@ -593,6 +597,7 @@ Module DepthIn12Times
                 a8(29) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
                 a8(30) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
                 a8(31) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+
                 a8(32) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
                 a8(33) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
                 a8(34) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
@@ -601,6 +606,7 @@ Module DepthIn12Times
                 a8(37) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
                 a8(38) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
                 a8(39) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+
                 a8(40) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
                 a8(41) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 a8(42) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
@@ -609,6 +615,7 @@ Module DepthIn12Times
                 a8(45) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
                 a8(46) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(47) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+
                 a8(48) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 a8(49) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
                 a8(50) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
@@ -617,6 +624,7 @@ Module DepthIn12Times
                 a8(53) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(54) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
                 a8(55) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+
                 a8(56) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
                 a8(57) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
                 a8(58) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
@@ -625,6 +633,7 @@ Module DepthIn12Times
                 a8(61) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
                 a8(62) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
                 a8(63) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+
                 Match_Key(pa, m_key, a8, c01, "01")
                 Match_Key(pa, m_key, a8, c02, "02")
                 Match_Key(pa, m_key, a8, c03, "03")
@@ -700,7 +709,11 @@ Module DepthIn12Times
                 ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "VALUE OF Z1 AFTER A MEGA LOOP"
                 ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Z1()= " + String.Join("-", z1)
                 ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "VALUE OF COMBO BEING COMPARED"
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "combo(start,finish)= " + String.Join("-", combo.Skip(start - 1).Take(finish).ToArray())
+                Dim combo_start_finish As String = ""
+                For p = start To finish
+                    combo_start_finish = combo_start_finish + combo(p)
+                Next
+                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "combo(start,finish)= " + combo_start_finish
             Next
             ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "BEFORE SECTION THREE"
             Dim pattern As Boolean = True
