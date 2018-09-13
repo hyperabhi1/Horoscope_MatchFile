@@ -19,7 +19,7 @@ Module Match_File
         MakeCusp_checkHouse()
         EmailNotify.SendEmail("Match_File_MA (NEW sql WAY) 50 threads Ended", starttime, "end")
         Console.WriteLine("TOTAL TIME TAKEN IS : " + DateTime.Now.Subtract(starttime).ToString())
-        Console.ReadKey()
+        'Console.ReadKey()
     End Sub
     Sub MakeCusp_checkHouse()
         Dim M_uid As String = "XXXXXXXXXX"

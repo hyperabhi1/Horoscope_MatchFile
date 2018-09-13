@@ -22,7 +22,7 @@ Module Match_file_modified
         MakeCusp_checkHouse()
         'EmailNotify.SendEmail("Match_File_Local Ended", starttime, "end")
         Console.WriteLine(DateTime.Now.Subtract(starttime))
-        Console.ReadKey()
+        'Console.ReadKey()
     End Sub
     Sub MakeCusp_checkHouse()
         Dim M_uid As String = "XXXXXXXXXX"

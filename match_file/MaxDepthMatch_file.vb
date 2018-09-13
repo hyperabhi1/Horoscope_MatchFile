@@ -20,7 +20,7 @@ Module MaxDepthMatch_file
         MakeCusp_checkHouse()
         EmailNotify.SendEmail("Match_File COUNTER-- Ended", starttime, "end")
         Console.WriteLine("TOTAL TIME TAKEN IS : " + DateTime.Now.Subtract(starttime).ToString())
-        Console.ReadKey()
+        'Console.ReadKey()
     End Sub
     Sub MakeCusp_checkHouse()
         Dim M_uid As String = "XXXXXXXXXX"

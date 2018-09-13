@@ -25,7 +25,7 @@ Module V5Changes
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Sending Finish Mail at: " + DateTime.Now.ToString()
         EmailNotify.SendEmail("NEWMATCH + COUNTER-- FOR (MA PLANET) Logic Test " + ST.ToString(), ST, "end")
         ConsoleLogs = ConsoleLogs + "Finish Mail Sent."
-        Console.ReadKey()
+        'Console.ReadKey()
     End Sub
     Sub FillCusp()
         Dim SelectCUSP = "SELECT * FROM CUSP;"

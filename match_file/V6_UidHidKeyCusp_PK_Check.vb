@@ -1,16 +1,16 @@
 ﻿Imports System.Data.SqlClient
-Module DepthIn12Times
+Module V6_UidHidKeyCusp_PK_Check
     Dim c01(), c02(), c03(), c04(), c05(), c06(), c07(), c08(), c09(), c10(), c11(), c12() As String
     Dim counter = 0
     Dim ThreadStartCounter = 0
     Dim ThreadEndCounter = 0
     'Dim connstr = "data source=49.50.103.132;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=False;User Id=sa;password=pSI)TA1t0K[)"
     Dim connstr = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
-    'Dim connstr = "data source=DESKTOP-T751K49;initial catalog=testdb;integrated security=True;"
+    'Dim connstr = "data source=DESKTOP-JBRFH9E;initial catalog=testdb;integrated security=True;"
     Sub Main()
         Dim ST As DateTime = DateTime.Now
         ConsoleLogs = ConsoleLogs + "Sending Start Mail at: " + DateTime.Now.ToString()
-        EmailNotify.SendEmail("NEWMATCH + COUNTER-- FOR (MA PLANET) Logic Test Started", ST, "start")
+        EmailNotify.SendEmail("UidHidKeyCusp_PK_Check Logic added For MA " + ST.ToString(), ST, "start")
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Start Mail Sent at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Fetching CUSP Details at: " + DateTime.Now.ToString()
         FillCusp()
@@ -19,10 +19,11 @@ Module DepthIn12Times
         'Parallel.Invoke(Sub() Match_File_MA(), Sub() Match_File_ME(), Sub() Match_File_MO(), Sub() Match_File_JU(), Sub() Match_File_SA(), Sub() Match_File_SU(), Sub() Match_File_VE())
         Match_File_MA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile Program Finished at: " + DateTime.Now.ToString()
+        NumberOfRecordsInMatchFile()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Time taken : " + DateTime.Now.Subtract(ST).ToString()
         Console.WriteLine("TOTAL TIME TAKEN IS : " + DateTime.Now.Subtract(ST).ToString())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Sending Finish Mail at: " + DateTime.Now.ToString()
-        EmailNotify.SendEmail("NEWMATCH + COUNTER-- FOR (MA PLANET) Logic Test Ended", ST, "end")
+        EmailNotify.SendEmail("UidHidKeyCusp_PK_Check Logic added For MA " + ST.ToString(), ST, "end")
         ConsoleLogs = ConsoleLogs + "Finish Mail Sent."
         'Console.ReadKey()
     End Sub
@@ -136,7 +137,7 @@ Module DepthIn12Times
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT top 100 * FROM F2PLANETS WHERE p0 = 'MA';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2PLANETS WHERE p0 = 'MA';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (MA) Started at: " + DateTime.Now.ToString()
@@ -144,50 +145,50 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (MA) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (MA) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(MA) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
-        Process_match_Key_set(ds, m_planet)
-        'Parallel.Invoke(
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet),
-        '        Sub() Process_match_Key_set(ds, m_planet))
+        Parallel.Invoke(
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet),
+                Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program finished at: " + DateTime.Now.ToString()
     End Sub
     Sub Match_File_JU()
@@ -205,6 +206,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (JU) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (JU) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(JU) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -265,6 +267,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (SA) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (SA) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(SA) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -325,6 +328,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (ME) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (ME) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(ME) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -385,6 +389,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (MO) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (MO) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(MO) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -445,6 +450,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (VE) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (VE) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(VE) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -505,6 +511,7 @@ Module DepthIn12Times
         da.Fill(ds)
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2PLANETS For (SU) Ended at: " + DateTime.Now.ToString()
         Console.WriteLine("Select * From F2PLANETS For (SU) Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in F2PLANETS-(SU) are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         counter = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
@@ -571,94 +578,81 @@ Module DepthIn12Times
                 a8(6) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 a8(7) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
 
-                a8(9) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(10) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(11) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(12) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(13) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(14) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(14) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(15) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(9) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(10) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(11) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(12) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(13) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(14) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(14) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+                a8(15) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
 
-                a8(16) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(17) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(18) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(19) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(20) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(21) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(22) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(23) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(16) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(17) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+                a8(18) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(19) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(20) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(21) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(22) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(23) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
 
-                a8(24) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(25) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(26) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(24) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(25) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(26) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
                 a8(27) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(28) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(29) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(30) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(28) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(29) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(30) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
                 a8(31) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
 
-                a8(32) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(33) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(34) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(35) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(36) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(37) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(38) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(39) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(32) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+                a8(33) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(34) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(35) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(36) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(37) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(38) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(39) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
 
-                a8(40) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(41) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(42) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(43) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(44) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(45) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(46) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(47) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(40) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
+                a8(41) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(42) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(43) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(44) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(45) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(46) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(47) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
 
-                a8(48) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-                a8(49) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(50) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
-                a8(51) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(52) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(53) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(54) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
-                a8(55) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(48) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(49) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(50) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
+                a8(51) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
+                a8(52) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(53) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(54) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
+                a8(55) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
 
-                a8(56) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
-                a8(57) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(56) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
+                a8(57) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
                 a8(58) = RowsData.Tables(0).Rows(i)(1).Trim.ToString()
-                a8(59) = RowsData.Tables(0).Rows(i)(2).Trim.ToString()
-                a8(60) = RowsData.Tables(0).Rows(i)(3).Trim.ToString()
-                a8(61) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                a8(59) = RowsData.Tables(0).Rows(i)(0).Trim.ToString()
+                a8(60) = RowsData.Tables(0).Rows(i)(7).Trim.ToString()
+                a8(61) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
                 a8(62) = RowsData.Tables(0).Rows(i)(5).Trim.ToString()
-                a8(63) = RowsData.Tables(0).Rows(i)(6).Trim.ToString()
-
-                Match_Key(pa, m_key, a8, c01, "01")
-                Match_Key(pa, m_key, a8, c02, "02")
-                Match_Key(pa, m_key, a8, c03, "03")
-                Match_Key(pa, m_key, a8, c04, "04")
-                Match_Key(pa, m_key, a8, c05, "05")
-                Match_Key(pa, m_key, a8, c06, "06")
-                Match_Key(pa, m_key, a8, c07, "07")
-                Match_Key(pa, m_key, a8, c08, "08")
-                Match_Key(pa, m_key, a8, c09, "09")
-                Match_Key(pa, m_key, a8, c10, "10")
-                Match_Key(pa, m_key, a8, c11, "11")
-                Match_Key(pa, m_key, a8, c12, "12")
-                'Parallel.Invoke(
-                'Sub() Match_Key(pa, m_key, a8, c01, "01"),
-                'Sub() Match_Key(pa, m_key, a8, c02, "02"),
-                'Sub() Match_Key(pa, m_key, a8, c03, "03"),
-                'Sub() Match_Key(pa, m_key, a8, c04, "04"),
-                'Sub() Match_Key(pa, m_key, a8, c05, "05"),
-                'Sub() Match_Key(pa, m_key, a8, c06, "06"),
-                'Sub() Match_Key(pa, m_key, a8, c07, "07"),
-                'Sub() Match_Key(pa, m_key, a8, c08, "08"),
-                'Sub() Match_Key(pa, m_key, a8, c09, "09"),
-                'Sub() Match_Key(pa, m_key, a8, c10, "10"),
-                'Sub() Match_Key(pa, m_key, a8, c11, "11"),
-                'Sub() Match_Key(pa, m_key, a8, c12, "12"))
+                a8(63) = RowsData.Tables(0).Rows(i)(4).Trim.ToString()
+                Parallel.Invoke(
+                Sub() Match_Key(pa, m_key, a8, c01, "01"),
+                Sub() Match_Key(pa, m_key, a8, c02, "02"),
+                Sub() Match_Key(pa, m_key, a8, c03, "03"),
+                Sub() Match_Key(pa, m_key, a8, c04, "04"),
+                Sub() Match_Key(pa, m_key, a8, c05, "05"),
+                Sub() Match_Key(pa, m_key, a8, c06, "06"),
+                Sub() Match_Key(pa, m_key, a8, c07, "07"),
+                Sub() Match_Key(pa, m_key, a8, c08, "08"),
+                Sub() Match_Key(pa, m_key, a8, c09, "09"),
+                Sub() Match_Key(pa, m_key, a8, c10, "10"),
+                Sub() Match_Key(pa, m_key, a8, c11, "11"),
+                Sub() Match_Key(pa, m_key, a8, c12, "12"))
             Catch ex As Exception
                 Exit While
             End Try
@@ -668,7 +662,7 @@ Module DepthIn12Times
         Console.WriteLine("Thread #" + ThreadEndCounter.ToString() + " ended at " + DateTime.Now.ToString())
     End Sub
     Sub Match_Key(ByRef m_planet As String, ByVal m_key As String, ByVal combo() As String, ByVal Cuspp() As String, ByVal cloc As String)
-        Dim y2() As String = {"YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY", "YY"}
+        Dim y2(63) As String
         Dim c = Cuspp.Length - 1
         Dim z1(c) As String
         Dim mstr = ""
@@ -679,8 +673,6 @@ Module DepthIn12Times
                 End If
             Next
         Next
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "EXIT FIRST SECTION"
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "y2 = " + String.Join("-", y2)
         For mega As Integer = 0 To 7
             Dim pstr1 = ""
             Dim pstr2 = ""
@@ -688,11 +680,8 @@ Module DepthIn12Times
             Array.Copy(Cuspp, z1, Cuspp.Length)
             Dim start = (mega - 0) * 8
             Dim finish = start + 7
-            ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "START OF SECTION TWO"
             For i = start To finish
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "start= " + start.ToString + "<br>finish= " + finish.ToString() + "<br>i= " + i.ToString() + "<br>y2(i)= " + String.Concat(y2(i)) + "<br>z1= " + String.Join("-", z1)
                 If y2(i) IsNot "XX" Then
-                    ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "EXITING SECTION TWO"
                     Exit For
                 End If
                 For j = 0 To c
@@ -706,24 +695,13 @@ Module DepthIn12Times
                         End If
                     End If
                 Next
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "VALUE OF Z1 AFTER A MEGA LOOP"
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Z1()= " + String.Join("-", z1)
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "VALUE OF COMBO BEING COMPARED"
-                Dim combo_start_finish As String = ""
-                For p = start To finish
-                    combo_start_finish = combo_start_finish + combo(p)
-                Next
-                ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "combo(start,finish)= " + combo_start_finish
             Next
-            ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "BEFORE SECTION THREE"
             Dim pattern As Boolean = True
             For m As Integer = 0 To c
                 If z1(m) IsNot "XX" Then
                     pattern = False
                 End If
             Next
-            ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "AFTER SECTION THREE"
-            ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br> pattern= " + pattern.ToString()
             If pattern = True Then
                 For i As Integer = start To finish
                     pstr1 = pstr1 + combo(i)
@@ -731,22 +709,37 @@ Module DepthIn12Times
                 For i As Integer = 0 To c
                     pstr2 = pstr2 + Cuspp(i)
                 Next
+                Dim uid As String = "XXXXXXXXXX"
+                Dim hid As String = "100001"
+
                 Dim con As New SqlConnection
                 Dim cmd As New SqlCommand
                 Try
-                    Dim uid As String = "XXXXXXXXXX"
-                    Dim hid As String = "100001"
                     con.ConnectionString = connstr
                     con.Open()
                     cmd.Connection = con
-                    cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + If(mstr.Length > 16, mstr.Substring(0, 16), mstr) + "');"
+                    cmd.CommandText = "INSERT INTO MATCH_FILE_KEY VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + If(mstr.Length > 16, mstr.Substring(0, 16), mstr) + "');"
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
-                    Console.WriteLine("Error while inserting record on table..." & ex.Message, "Insert Records")
                 Finally
                     con.Close()
                 End Try
             End If
         Next
+    End Sub
+    Sub NumberOfRecordsInMatchFile()
+        Dim con As New SqlConnection(connstr)
+        Dim connection As SqlConnection = New SqlConnection(connstr)
+        connection.Open()
+        Dim cmd As New SqlCommand("SELECT * FROM MATCH_FILE;", con)
+        Dim da As New SqlDataAdapter(cmd)
+        Dim ds As New DataSet()
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString())
+        da.Fill(ds)
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCH_FILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
+        connection.Close()
     End Sub
 End Module
