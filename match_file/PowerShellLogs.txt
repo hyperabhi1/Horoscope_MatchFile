@@ -1,0 +1,363 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -scriptblock {get-childitem C:\} -credential administ
+rator
+
+
+    Directory: C:\
+
+
+Mode                LastWriteTime         Length Name                                PSComputerName
+----                -------------         ------ ----                                --------------
+d----        10-08-2018  02:53 PM                10AugBackup                         49.50.103.132
+d----        12-09-2018  11:34 AM                12sep18                             49.50.103.132
+d----        18-08-2018  12:49 PM                18Aug2018                           49.50.103.132
+d----        30-08-2018  06:01 PM                30aug2018                           49.50.103.132
+d----        03-09-2018  01:10 PM                3Sep2018                            49.50.103.132
+d----        06-09-2018  12:20 PM                6sep2018                            49.50.103.132
+d----        08-08-2018  03:39 PM                8AugBK                              49.50.103.132
+d----        09-08-2018  07:15 PM                9AugBackup                          49.50.103.132
+d----        13-08-2018  05:11 PM                Astro                               49.50.103.132
+d----        18-07-2018  11:46 PM                astro456.net                        49.50.103.132
+d----        04-08-2018  12:55 PM                AstroBKup                           49.50.103.132
+d----        09-08-2018  11:17 AM                AstroWebPortal                      49.50.103.132
+d----        10-08-2018  03:59 PM                Backup10.2                          49.50.103.132
+d----        10-08-2018  06:03 PM                Backup10.3                          49.50.103.132
+d----        13-08-2018  05:06 PM                Backup13Aug                         49.50.103.132
+d----        28-08-2018  03:17 PM                Backup28Aug18                       49.50.103.132
+d----        06-08-2018  05:14 PM                Backup6Aug                          49.50.103.132
+d----        25-07-2018  10:27 AM                Bkup                                49.50.103.132
+d----        14-09-2018  11:47 AM                DBChanges_Work                      49.50.103.132
+d----        20-08-2018  12:43 PM                inetpub                             49.50.103.132
+d----        14-09-2018  03:13 PM                MatchFile_Work                      49.50.103.132
+d----        26-07-2012  01:14 PM                PerfLogs                            49.50.103.132
+d-r--        16-07-2018  02:07 PM                Program Files                       49.50.103.132
+d----        13-09-2018  02:58 PM                Program Files (x86)                 49.50.103.132
+d-r--        16-07-2018  02:16 PM                Users                               49.50.103.132
+d----        20-07-2018  11:54 AM                Windows                             49.50.103.132
+-a---        19-07-2018  03:01 PM        4046848 abc                                 49.50.103.132
+-a---        08-08-2018  02:09 PM        4505600 Astro_db                            49.50.103.132
+-a---        05-09-2018  11:25 AM      136589312 HeadLetters6.bak                    49.50.103.132
+-a---        08-09-2018  05:16 AM              3 test.txt                            49.50.103.132
+
+
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'}
+[49.50.103.132] Connecting to remote server 49.50.103.132 failed with the following error message : Access is denied.
+For more information, see the about_Remote_Troubleshooting Help topic.
+    + CategoryInfo          : OpenError: (49.50.103.132:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : AccessDenied,PSSessionStateBroken
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MO) Started at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (MA) Started at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 3:37:52 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 3:37:53 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 3:37:54 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 3:37:54 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 3:38:05 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 3:38:05 PM
+TOTAL TIME TAKEN IS : 00:00:17.6905514
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 3:40:35 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 3:40:36 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 3:40:36 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 3:40:36 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 3:40:46 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 3:40:46 PM
+TOTAL TIME TAKEN IS : 00:00:16.3489395
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 3:45:51 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 3:45:52 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 3:45:52 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 3:45:52 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 3:46:03 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 3:46:03 PM
+TOTAL TIME TAKEN IS : 00:00:16.5829420
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+[49.50.103.132] Connecting to remote server 49.50.103.132 failed with the following error message : Access is denied.
+For more information, see the about_Remote_Troubleshooting Help topic.
+    + CategoryInfo          : OpenError: (49.50.103.132:String) [], PSRemotingTransportException
+    + FullyQualifiedErrorId : AccessDenied,PSSessionStateBroken
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 3:51:02 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 3:51:03 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 3:51:13 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 3:51:13 PM
+TOTAL TIME TAKEN IS : 00:00:16.0993382
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 3:59:05 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 3:59:05 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 3:59:22 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 3:59:22 PM
+TOTAL TIME TAKEN IS : 00:00:22.1521891
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:01:00 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:01:00 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:01:22 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:01:23 PM
+TOTAL TIME TAKEN IS : 00:00:27.7838371
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:02:47 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:02:47 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:02:55 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:02:55 PM
+TOTAL TIME TAKEN IS : 00:00:12.9169107
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:04:45 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:04:45 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:05:01 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:05:01 PM
+TOTAL TIME TAKEN IS : 00:00:21.0913811
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:05:55 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:05:55 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:06:11 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:06:12 PM
+TOTAL TIME TAKEN IS : 00:00:21.8869866
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:07:42 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:07:42 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:07:51 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:07:52 PM
+TOTAL TIME TAKEN IS : 00:00:13.9933192
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (VE) Started at: 9/14/2018 4:08:36 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 4:08:36 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:08:49 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:08:49 PM
+TOTAL TIME TAKEN IS : 00:00:18.1429560
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:11:25 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:11:26 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:11:26 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:11:28 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:11:29 PM
+TOTAL TIME TAKEN IS : 00:00:08.6268745
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:12:41 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:12:41 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:12:41 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:12:41 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:12:41 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:12:42 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:12:42 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:12:49 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:12:49 PM
+TOTAL TIME TAKEN IS : 00:00:12.4177065
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:44:12 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:44:13 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:44:13 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 4:44:13 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 4:44:14 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:44:26 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:44:26 PM
+TOTAL TIME TAKEN IS : 00:00:19.1881648
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:53:14 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:53:14 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:53:14 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:53:14 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:53:15 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:53:16 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 4:53:16 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 4:53:16 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:54:20 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:54:20 PM
+TOTAL TIME TAKEN IS : 00:01:10.9806081
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:55:57 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:55:58 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:55:58 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 4:56:00 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 4:56:00 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 4:57:02 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 4:57:02 PM
+TOTAL TIME TAKEN IS : 00:01:10.3410024
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 4:59:58 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 4:59:59 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 4:59:59 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 5:00:01 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 5:00:01 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 5:01:03 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 5:01:03 PM
+TOTAL TIME TAKEN IS : 00:01:10.2786023
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 5:16:33 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 5:16:33 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 5:16:33 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 5:16:33 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 5:16:33 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 5:16:34 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 5:16:35 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 5:16:35 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 5:17:37 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 5:17:38 PM
+TOTAL TIME TAKEN IS : 00:01:10.0289993
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 5:40:57 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 5:40:57 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 5:43:33 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 5:43:34 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 5:47:13 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 5:47:13 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 5:47:57 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 5:47:57 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 5:50:02 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 5:50:02 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 5:50:54 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 5:50:55 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 5:52:22 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 5:52:23 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 5:54:40 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 5:54:41 PM
+TOTAL TIME TAKEN IS : 00:14:08.7252731
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Invoke-Command : Cannot bind argument to parameter 'Credential' because it is null.
+At line:1 char:121
++ ... MatchFile_Work\MainProgram\match_file.exe'} -credential administrator
++                                                             ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Invoke-Command], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorNullNotAllowed,Microsoft.PowerShell.Commands.InvokeComma
+   ndCommand
+
+PS C:\WINDOWS\system32> invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match
+_file.exe'} -credential administrator
+Select * From F2BASE For (MA) Started at: 9/14/2018 6:06:08 PM
+Select * From F2BASE For (MA) Ended at: 9/14/2018 6:06:08 PM
+Select * From F2BASE For (ME) Started at: 9/14/2018 6:08:44 PM
+Select * From F2BASE For (ME) Ended at: 9/14/2018 6:08:45 PM
+Select * From F2BASE For (MO) Started at: 9/14/2018 6:12:21 PM
+Select * From F2BASE For (MO) Ended at: 9/14/2018 6:12:21 PM
+Select * From F2BASE For (SA) Started at: 9/14/2018 6:13:05 PM
+Select * From F2BASE For (SA) Ended at: 9/14/2018 6:13:05 PM
+Select * From F2BASE For (SU) Started at: 9/14/2018 6:15:14 PM
+Select * From F2BASE For (SU) Ended at: 9/14/2018 6:15:14 PM
+Select * From F2BASE For (VE) Started at: 9/14/2018 6:16:07 PM
+Select * From F2BASE For (VE) Ended at: 9/14/2018 6:16:07 PM
+Select * From F2BASE For (JU) Started at: 9/14/2018 6:17:36 PM
+Select * From F2BASE For (JU) Ended at: 9/14/2018 6:17:36 PM
+SELECT COUNT(*) FROM MATCH_FILE Started at: 9/14/2018 6:19:52 PM
+SELECT COUNT(*) FROM MATCH_FILE Ended at: 9/14/2018 6:19:53 PM
+TOTAL TIME TAKEN IS : 00:13:50.7227194
+PS C:\WINDOWS\system32>
