@@ -13,3 +13,16 @@ alter table ASTROLOGYSOFTWARE_DB.dbo.match_file_Key add constraint PK_KeyCheck P
 Set-Item wsman:\localhost\client\trustedhosts *
 Restart-Service WinRM
 invoke-command -ComputerName 49.50.103.132 -scriptblock {get-childitem C:\} -credential administrator
+
+
+create table MATCH_FILE (UID CHAR(10), HID CHAR(10), PLANET CHAR(2), M_KEY CHAR(14), CUSPID CHAR(2), CUSPSTR CHAR(16));
+
+alter table MATCH_FILE add constraint PK_KeyCheck PRIMARY Key clustered (UID,HID,M_KEY,CUSPID);
+
+--select top 1 * from match_file_bak
+--select top 1 * from match_file_key
+--SELECT uid,hid,[key],cuspid FROM match_file_key GROUP BY uid,hid,[key],cuspid HAVING COUNT(*)>1
+--select * from MATCH_FILE
+--select count(*) from match_file
+SELECT uid,hid,[key],cuspid, COUNT(*) as Repeatition FROM match_file GROUP BY uid,hid,[key],cuspid HAVING COUNT(*) > 1
+SELECT P1,P2,P3,P4,P5,P6, COUNT(*) as TIMES FROM F2BASE GROUP BY P1,P2,P3,P4,P5,P6 HAVING COUNT(*) > 1

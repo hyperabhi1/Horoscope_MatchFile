@@ -6,11 +6,7 @@ Module EmailNotify
     Sub SendEmail(ByVal Subject As String, ByVal Time As DateTime, ByVal flag As String)
         Dim mail As New MailMessage
         mail.To.Add("abhishek.singh@enukesoftware.com")
-        'mail.To.Add("standalone.abhishek@gmail.com")
         'mail.To.Add("vcdubai@gmail.com")
-        'mail.To.Add("vc_dubai@yahoo.com")
-
-        'mail.To.Add("abhishek@enukesoftware.com")
         mail.From = New MailAddress("standalone.abhishek@outlook.com")
         mail.Subject = Subject
         mail.IsBodyHtml = True
@@ -18,9 +14,6 @@ Module EmailNotify
             mail.Body += "<br><h1>Start Time: </h1>" + Time + "<br>"
         End If
         If flag = "end" Then
-            mail.To.Add("vcdubai@yahoo.com")
-            mail.To.Add("vc_dubai@yahoo.com")
-            'mail.To.Add("vcdubai@gmail.com")
             mail.Body += "<br><h1>Total Time: </h1>" + DateTime.Now.Subtract(Time).ToString() + "<br>"
             mail.Body += "<br><h3>Console Logs</h3><br>"
             mail.Body += ConsoleLogs

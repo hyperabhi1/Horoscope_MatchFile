@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B178E829-9536-4492-8F07-D424859925F1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>match_file.V6_UidHidKeyCusp_PK_Check</StartupObject>
+    <StartupObject>match_file.H10_v1_WithoutParallel</StartupObject>
     <RootNamespace>match_file</RootNamespace>
     <AssemblyName>match_file</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -97,6 +97,9 @@
     <Compile Include="Counter12Parallel.vb" />
     <Compile Include="DepthIn12Times.vb" />
     <Compile Include="EmailNotify.vb" />
+    <Compile Include="H10_v1.vb" />
+    <Compile Include="H10_v1_Logs.vb" />
+    <Compile Include="H10_v1_WithoutParallel.vb" />
     <Compile Include="Match_File.vb" />
     <Compile Include="Match_File_Local.vb" />
     <Compile Include="Match_file_modified.vb" />
@@ -144,6 +147,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Notes.txt" />
     <Content Include="Scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
