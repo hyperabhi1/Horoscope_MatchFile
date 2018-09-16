@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B178E829-9536-4492-8F07-D424859925F1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>match_file.H10_v1_WithoutParallel</StartupObject>
+    <StartupObject>match_file.test</StartupObject>
     <RootNamespace>match_file</RootNamespace>
     <AssemblyName>match_file</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -98,6 +98,8 @@
     <Compile Include="DepthIn12Times.vb" />
     <Compile Include="EmailNotify.vb" />
     <Compile Include="H10_v1.vb" />
+    <Compile Include="H10_v1_ASC.vb" />
+    <Compile Include="H10_v1_ASC_WithoutParallel.vb" />
     <Compile Include="H10_v1_Logs.vb" />
     <Compile Include="H10_v1_WithoutParallel.vb" />
     <Compile Include="Match_File.vb" />
@@ -121,6 +123,7 @@
     </Compile>
     <Compile Include="New_Prog_1.vb" />
     <Compile Include="Permutations.vb" />
+    <Compile Include="test.vb" />
     <Compile Include="V6_UIDhidkeycuspid_Check.vb" />
     <Compile Include="V5Changes.vb" />
     <Compile Include="V5ChangesLogs.vb" />

@@ -1,4 +1,4 @@
-49.50.103.132:9001
+﻿49.50.103.132:9001
 sa
 pSI)TA1t0K[)
 
@@ -6,6 +6,7 @@ Abhishek
 pass@123
 21
 sqlcmd –S tcp:49.50.103.132,1433 –U sa –P pSI)TA1t0K[)
+sqlcmd /S 49.50.103.132 /U sa /P pSI)TA1t0K[)
 select * from ASTROLOGYSOFTWARE_DB.dbo.match_file
 
 alter table ASTROLOGYSOFTWARE_DB.dbo.match_file_Key add constraint PK_KeyCheck PRIMARY Key clustered (uid,hid,[key],cuspid);
@@ -28,3 +29,10 @@ alter table MATCH_FILE add constraint PK_KeyCheck PRIMARY Key clustered (UID,HID
 --select count(*) from match_file
 SELECT uid,hid,[key],cuspid, COUNT(*) as Repeatition FROM match_file GROUP BY uid,hid,[key],cuspid HAVING COUNT(*) > 1
 SELECT P1,P2,P3,P4,P5,P6, COUNT(*) as TIMES FROM F2BASE GROUP BY P1,P2,P3,P4,P5,P6 HAVING COUNT(*) > 1
+
+
+
+installutil.exe "c:\users\developer\documents\visual studio 2015\Projects\POCBatchService\POCBatchService\bin\Debug\POCBatchService.exe"
+net start "POC Batch Service"
+net stop "POC Batch Service"
+sc.exe delete "POC Batch Service"

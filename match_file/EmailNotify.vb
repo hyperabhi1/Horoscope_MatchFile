@@ -7,7 +7,7 @@ Module EmailNotify
         Dim mail As New MailMessage
         mail.To.Add("abhishek.singh@enukesoftware.com")
         'mail.To.Add("vcdubai@gmail.com")
-        mail.From = New MailAddress("standalone.abhishek@outlook.com")
+        mail.From = New MailAddress("iamemailsender@gmail.com")
         mail.Subject = Subject
         mail.IsBodyHtml = True
         If flag = "start" Then
