@@ -7,27 +7,28 @@ pass@123
 21
 sqlcmd –S tcp:49.50.103.132,1433 –U sa –P pSI)TA1t0K[)
 sqlcmd /S 49.50.103.132 /U sa /P pSI)TA1t0K[)
-select * from ASTROLOGYSOFTWARE_DB.dbo.match_file
+select * from ASTROLOGYSOFTWARE_DB.dbo.MATCHFILE
 
-alter table ASTROLOGYSOFTWARE_DB.dbo.match_file_Key add constraint PK_KeyCheck PRIMARY Key clustered (uid,hid,[key],cuspid);
+alter table ASTROLOGYSOFTWARE_DB.dbo.MATCHFILE_Key add constraint PK_KeyCheck PRIMARY Key clustered (uid,hid,[key],cuspid);
 
 Set-Item wsman:\localhost\client\trustedhosts *
 Restart-Service WinRM
+invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\Prediction_Work\Gen_Prediction.exe'} -credential administrator
+
 invoke-command -ComputerName 49.50.103.132 -scriptblock {get-childitem C:\} -credential administrator
 
-invoke-command -ComputerName 49.50.103.132 -ScriptBlock { & 'C:\MatchFile_Work\MainProgram\match_file.exe'} -credential administrator
 
 
-create table MATCH_FILE (UID CHAR(10), HID CHAR(10), PLANET CHAR(2), M_KEY CHAR(14), CUSPID CHAR(2), CUSPSTR CHAR(16));
+create table MATCHFILE (UID CHAR(10), HID CHAR(10), PLANET CHAR(2), M_KEY CHAR(14), CUSPID CHAR(2), CUSPSTR CHAR(16));
 
-alter table MATCH_FILE add constraint PK_KeyCheck PRIMARY Key clustered (UID,HID,M_KEY,CUSPID);
+alter table MATCHFILE add constraint PK_KeyCheck PRIMARY Key clustered (UID,HID,M_KEY,CUSPID);
 
---select top 1 * from match_file_bak
---select top 1 * from match_file_key
---SELECT uid,hid,[key],cuspid FROM match_file_key GROUP BY uid,hid,[key],cuspid HAVING COUNT(*)>1
---select * from MATCH_FILE
---select count(*) from match_file
-SELECT uid,hid,[key],cuspid, COUNT(*) as Repeatition FROM match_file GROUP BY uid,hid,[key],cuspid HAVING COUNT(*) > 1
+--select top 1 * from MATCHFILE_bak
+--select top 1 * from MATCHFILE_key
+--SELECT uid,hid,[key],cuspid FROM MATCHFILE_key GROUP BY uid,hid,[key],cuspid HAVING COUNT(*)>1
+--select * from MATCHFILE
+--select count(*) from MATCHFILE
+SELECT uid,hid,[key],cuspid, COUNT(*) as Repeatition FROM MATCHFILE GROUP BY uid,hid,[key],cuspid HAVING COUNT(*) > 1
 SELECT P1,P2,P3,P4,P5,P6, COUNT(*) as TIMES FROM F2BASE GROUP BY P1,P2,P3,P4,P5,P6 HAVING COUNT(*) > 1
 
 
@@ -44,6 +45,8 @@ DROP TABLE F2BASE;
 DROP TABLE MATCHFILE;
 DROP TABLE MATCHFILE_ASC;
 DROP TABLE HRAKE;
+DROP TABLE PROMISE;
+CREATE TABLE PROMISE (HID CHAR(10),UID CHAR(10),CUSPID CHAR(4),MKEY CHAR(14),KEYPOSITION CHAR(1),MPLANET INT)
 CREATE TABLE HRAKE (UID CHAR(10),HID CHAR(10),HKEY CHAR(2),S1 CHAR(10));
 CREATE TABLE HPLANET (UID CHAR(10),HID CHAR(10),PLANET CHAR(2),SIGN CHAR(3),DMS CHAR(8),HP1 CHAR(2),HP2 CHAR(2),HP3 CHAR(2),HP4 CHAR(2),HP5 CHAR(2),HP6 CHAR(2),HPHOUSE CHAR(2));
 CREATE TABLE HCUSP (UID CHAR(10),HID CHAR(10),CUSP CHAR(2),SIGN CHAR(3),DMS CHAR(8),CP1 CHAR(2),CP2 CHAR(2),CP3 CHAR(2));
@@ -54,3 +57,12 @@ CREATE TABLE MATCHFILE (UID CHAR(254) NOT NULL, HID CHAR(30) NOT NULL, PLANET CH
 ALTER TABLE MATCHFILE ADD CONSTRAINT PK_KEYCHECK PRIMARY KEY CLUSTERED (UID,HID,MKEY,CUSPID);
 CREATE TABLE MATCHFILE_ASC (UID CHAR(254) NOT NULL, HID CHAR(30) NOT NULL, PLANET CHAR(2), MKEY CHAR(14) NOT NULL, CUSPID CHAR(2) NOT NULL, CUSPSTR CHAR(16));
 ALTER TABLE MATCHFILE_ASC ADD CONSTRAINT PK_KEYCHECK_ASC PRIMARY KEY CLUSTERED (UID,HID,MKEY,CUSPID);
+
+truncate table HPLANET;
+TRUNCATE TABLE HCUSP;
+TRUNCATE TABLE CUSP;
+TRUNCATE TABLE HRAKE;
+
+CREATE TABLE PROMISE (HID CHAR(10),UID CHAR(10),cuspID CHAR(4),key CHAR(14),keyposition CHAR(1),kcounter int)
+CREATE TABLE HEADLETTERS_ENGINE.DBO.HCUSP_CALC(CUSPUSERID CHAR(254),CUSPHID CHAR(30),CUSPID CHAR(2),CUSPPLANET CHAR(2),CUSPTYPE NUMERIC(1),CUSPCAT NUMERIC(1))
+CREATE TABLE HPROMISE_CALC (HPCUSPID CHAR(254), HPHID CHAR(30), HPFCUSPID CHAR(2), HPFCUSPPLANET CHAR(2), HPTCUSPID CHAR(2), HPTCUSPPLANET CHAR(2))
