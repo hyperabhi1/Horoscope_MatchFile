@@ -4,7 +4,7 @@ Module New_Prog_1
     Dim c01(), c02(), c03(), c04(), c05(), c06(), c07(), c08(), c09(), c10(), c11(), c12() As String
     Dim SelectCUSP = "SELECT * FROM CUSP;"
     Dim m_planet = "ME"
-    Dim SelectF2BASE = "TRUNCATE TABLE MATCH_FILE_ME; SELECT * FROM F2BASE;"
+    Dim SelectF2BASE = "TRUNCATE TABLE MATCHFILE_ME; SELECT * FROM F2BASE;"
     Dim connstr = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
     'Dim connstr = "data source=DESKTOP-JBRFH9E;initial catalog=testdb;integrated security=True;"
     'Dim connstr = "data source=49.50.103.132;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=False;User Id=sa;password=pSI)TA1t0K[)"
@@ -22,7 +22,7 @@ Module New_Prog_1
         Dim counter As Integer = 0
         Console.WriteLine("row match start :" + DateTime.Now.ToString())
         Dim dt As DateTime = DateTime.Now
-        EmailNotify.SendEmail("Match_File_Me started filling", DateTime.Now, "start")
+        EmailNotify.SendEmail("MATCHFILE_Me started filling", DateTime.Now, "start")
         For Each Row As DataRow In ds0.Tables(0).Rows
             MatchKey(m_planet, Row.Item(1).ToString(), Row.Item(2).ToString(), Row.Item(3).ToString(), Row.Item(4).ToString(), Row.Item(5).ToString(), Row.Item(6).ToString(), Row.Item(7).ToString(), c01, "01")
             MatchKey(m_planet, Row.Item(1).ToString(), Row.Item(2).ToString(), Row.Item(3).ToString(), Row.Item(4).ToString(), Row.Item(5).ToString(), Row.Item(6).ToString(), Row.Item(7).ToString(), c02, "02")
@@ -37,7 +37,7 @@ Module New_Prog_1
             MatchKey(m_planet, Row.Item(1).ToString(), Row.Item(2).ToString(), Row.Item(3).ToString(), Row.Item(4).ToString(), Row.Item(5).ToString(), Row.Item(6).ToString(), Row.Item(7).ToString(), c11, "11")
             MatchKey(m_planet, Row.Item(1).ToString(), Row.Item(2).ToString(), Row.Item(3).ToString(), Row.Item(4).ToString(), Row.Item(5).ToString(), Row.Item(6).ToString(), Row.Item(7).ToString(), c12, "12")
         Next
-        EmailNotify.SendEmail("Match_File_Me filled up", dt, "end")
+        EmailNotify.SendEmail("MATCHFILE_Me filled up", dt, "end")
         connection0.Close()
     End Sub
     Sub MatchKey(ByVal m_planet As String, ByVal p1 As String, ByVal p2 As String, ByVal p3 As String, ByVal p4 As String, ByVal p5 As String, ByVal p6 As String, ByVal p7 As String, ByVal cusp() As String, ByVal p_cusp As String)
@@ -222,7 +222,7 @@ Module New_Prog_1
             connection.Open()
             Dim query As String
 
-            query = "INSERT INTO MATCH_FILE_ME VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_comb + "','" + p_cusp + "','" + cusp_str + "')"
+            query = "INSERT INTO MATCHFILE_ME VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_comb + "','" + p_cusp + "','" + cusp_str + "')"
             Dim cmd As New SqlCommand(query, con)
             Dim da As New SqlDataAdapter(cmd)
             Dim ds As New DataSet()

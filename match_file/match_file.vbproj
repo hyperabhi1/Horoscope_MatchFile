@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B178E829-9536-4492-8F07-D424859925F1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>match_file.test</StartupObject>
+    <StartupObject>match_file.H10_v1_ASC</StartupObject>
     <RootNamespace>match_file</RootNamespace>
     <AssemblyName>match_file</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -102,6 +102,7 @@
     <Compile Include="H10_v1_ASC_WithoutParallel.vb" />
     <Compile Include="H10_v1_Logs.vb" />
     <Compile Include="H10_v1_WithoutParallel.vb" />
+    <Compile Include="H11_v1.vb" />
     <Compile Include="Match_File.vb" />
     <Compile Include="Match_File_Local.vb" />
     <Compile Include="Match_file_modified.vb" />

@@ -16,8 +16,8 @@ Module H10_v1_Logs
         FillCusp()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "CUSP Details Fetched at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Initiating MatchFile Program at: " + DateTime.Now.ToString()
-        Match_File_MA()
-        'Parallel.Invoke(Sub() Match_File_MA(), Sub() Match_File_ME(), Sub() Match_File_MO(), Sub() Match_File_JU(), Sub() Match_File_SA(), Sub() Match_File_SU(), Sub() Match_File_VE())
+        MATCHFILE_MA()
+        'Parallel.Invoke(Sub() MATCHFILE_MA(), Sub() MATCHFILE_ME(), Sub() MATCHFILE_MO(), Sub() MATCHFILE_JU(), Sub() MATCHFILE_SA(), Sub() MATCHFILE_SU(), Sub() MATCHFILE_VE())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile Program Finished at: " + DateTime.Now.ToString()
         NumberOfRecordsInMatchFile()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Time taken : " + DateTime.Now.Subtract(ST).ToString()
@@ -130,14 +130,14 @@ Module H10_v1_Logs
         Next
         connection.Close()
     End Sub
-    Sub Match_File_ALL()
+    Sub MATCHFILE_ALL()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_Planets Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "AL"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE;", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE;", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (ALL) Started at: " + DateTime.Now.ToString()
@@ -191,14 +191,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_planets Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MA()
+    Sub MATCHFILE_MA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MA"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT TOP 50 * FROM F2BASE WHERE p1 = 'MA';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT TOP 50 * FROM F2BASE WHERE p1 = 'MA';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (MA) Started at: " + DateTime.Now.ToString()
@@ -253,14 +253,14 @@ Module H10_v1_Logs
         '       Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_JU()
+    Sub MATCHFILE_JU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "JU"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'JU';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'JU';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (JU) Started at: " + DateTime.Now.ToString()
@@ -314,14 +314,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SA()
+    Sub MATCHFILE_SA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SA"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'SA';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'SA';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (SA) Started at: " + DateTime.Now.ToString()
@@ -375,14 +375,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_ME()
+    Sub MATCHFILE_ME()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "ME"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'ME';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'ME';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (ME) Started at: " + DateTime.Now.ToString()
@@ -436,14 +436,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MO()
+    Sub MATCHFILE_MO()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MO"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'MO';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'MO';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (MO) Started at: " + DateTime.Now.ToString()
@@ -497,14 +497,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_VE()
+    Sub MATCHFILE_VE()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "VE"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'VE';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'VE';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (VE) Started at: " + DateTime.Now.ToString()
@@ -558,14 +558,14 @@ Module H10_v1_Logs
                 Sub() Process_match_Key_set(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SU()
+    Sub MATCHFILE_SU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SU"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCH_FILE; SELECT * FROM F2BASE WHERE p1 = 'SU';", con)
+        Dim cmd As New SqlCommand("TRUNCATE TABLE MATCHFILE; SELECT * FROM F2BASE WHERE p1 = 'SU';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (SU) Started at: " + DateTime.Now.ToString()
@@ -793,7 +793,7 @@ Module H10_v1_Logs
                     con.ConnectionString = connstr
                     con.Open()
                     cmd.Connection = con
-                    cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
+                    cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
                 Finally
@@ -806,15 +806,15 @@ Module H10_v1_Logs
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("SELECT * FROM MATCH_FILE;", con)
+        Dim cmd As New SqlCommand("SELECT * FROM MATCHFILE;", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString())
         da.Fill(ds)
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString())
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCH_FILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCHFILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         connection.Close()
     End Sub
 End Module

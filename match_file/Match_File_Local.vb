@@ -1,19 +1,19 @@
 ﻿Imports System.Data.SqlClient
 
-Module Match_File_Local
+Module MATCHFILE_Local
     Dim S1(12) As String
     Dim c01(), c02(), c03(), c04(), c05(), c06(), c07(), c08(), c09(), c10(), c11(), c12() As String
     Dim m_planet As String
     Dim f2prow As String
     Dim connstr = "data source=DESKTOP-JBRFH9E;initial catalog=testdb;integrated security=True;"
-    Dim SelectF2PLANET = "truncate table match_file;SELECT top 100000 * FROM F2PLANETS;"
+    Dim SelectF2PLANET = "truncate table MATCHFILE;SELECT top 100000 * FROM F2PLANETS;"
 
     Sub Main()
         Dim starttime As DateTime = DateTime.Now
-        'EmailNotify.SendEmail("Match_File_Local Started", starttime, "start")
+        'EmailNotify.SendEmail("MATCHFILE_Local Started", starttime, "start")
         Console.WriteLine(starttime)
         MakeCusp_checkHouse()
-        'EmailNotify.SendEmail("Match_File_Local Ended", starttime, "end")
+        'EmailNotify.SendEmail("MATCHFILE_Local Ended", starttime, "end")
         Console.WriteLine(DateTime.Now.Subtract(starttime))
         'Console.ReadKey()
     End Sub
@@ -502,7 +502,7 @@ Module Match_File_Local
             connection.Open()
             Dim query As String
 
-            query = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + f2prow + "','" + f2rw_comb + "','" + cusp_id + "','" + cusp_str + "','" + m_str + "')"
+            query = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + f2prow + "','" + f2rw_comb + "','" + cusp_id + "','" + cusp_str + "','" + m_str + "')"
             Dim cmd As New SqlCommand(query, con)
             Dim da As New SqlDataAdapter(cmd)
             Dim ds As New DataSet()

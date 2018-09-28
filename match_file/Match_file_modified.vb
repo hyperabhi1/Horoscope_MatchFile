@@ -2,13 +2,13 @@
 Imports System.Data.SqlClient
 Imports System.Text
 
-Module Match_file_modified
+Module MATCHFILE_modified
     Dim S1(12) As String
     Dim c01(), c02(), c03(), c04(), c05(), c06(), c07(), c08(), c09(), c10(), c11(), c12() As String
     Dim m_planet As String
     Dim f2prow As String
     Dim connstr = "data source=DESKTOP-JBRFH9E;initial catalog=testdb;integrated security=True;"
-    Dim SelectF2PLANET = "truncate table match_file1;SELECT top 100000 * FROM F2PLANETS;"
+    Dim SelectF2PLANET = "truncate table MATCHFILE1;SELECT top 100000 * FROM F2PLANETS;"
     Dim F2P_RwCsp01, F2P_RwCsp02, F2P_RwCsp03, F2P_RwCsp04, F2P_RwCsp05, F2P_RwCsp06, F2P_RwCsp07, F2P_RwCsp08, F2P_RwCsp09, F2P_RwCsp10, F2P_RwCsp11, F2P_RwCsp12 As String
 
     Sub Main()
@@ -17,10 +17,10 @@ Module Match_file_modified
         Dim st As String = Encrypt("mP0Bnz8Ii/spHwdPZuHJYFv3Wvbz3LGPBi+W1mfmjIw=", "sblw-3hn8-sqoy19")
         Console.WriteLine(Decrypt("mP0Bnz8Ii/spHwdPZuHJYFv3Wvbz3LGPBi+W1mfmjIw=", "sblw-3hn8-sqoy19"))
         Dim starttime As DateTime = DateTime.Now
-        'EmailNotify.SendEmail("Match_File_Local Started", starttime, "start")
+        'EmailNotify.SendEmail("MATCHFILE_Local Started", starttime, "start")
         Console.WriteLine(starttime)
         MakeCusp_checkHouse()
-        'EmailNotify.SendEmail("Match_File_Local Ended", starttime, "end")
+        'EmailNotify.SendEmail("MATCHFILE_Local Ended", starttime, "end")
         Console.WriteLine(DateTime.Now.Subtract(starttime))
         'Console.ReadKey()
     End Sub
@@ -416,7 +416,7 @@ Module Match_file_modified
         connection.Open()
         Dim query As String
 
-        query = "INSERT INTO MATCH_FILE1 VALUES ('" + uid + "','" + hid + "','" + "mp" + "','" + f2prow.Substring(0, 16) + "','XXXXXXXXXXXXXXXX','" + CuspId + "','" + Cusp_str + "','XXXXXX')"
+        query = "INSERT INTO MATCHFILE1 VALUES ('" + uid + "','" + hid + "','" + "mp" + "','" + f2prow.Substring(0, 16) + "','XXXXXXXXXXXXXXXX','" + CuspId + "','" + Cusp_str + "','XXXXXX')"
         Dim cmd As New SqlCommand(query, con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()

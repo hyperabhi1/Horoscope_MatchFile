@@ -24,15 +24,15 @@ Module H10_v1_WithoutParallel
         FillCusp()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "CUSP Details Fetched at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Initiating MatchFile Program at: " + DateTime.Now.ToString()
-        TruncateMatch_File()
-        Match_File_MA()
-        Match_File_ME()
-        Match_File_MO()
-        Match_File_SA()
-        Match_File_SU()
-        Match_File_VE()
-        Match_File_JU()
-        'Parallel.Invoke(Sub() Match_File_MA(), Sub() Match_File_ME(), Sub() Match_File_MO(), Sub() Match_File_JU(), Sub() Match_File_SA(), Sub() Match_File_SU(), Sub() Match_File_VE())
+        TruncateMATCHFILE()
+        MATCHFILE_MA()
+        MATCHFILE_ME()
+        MATCHFILE_MO()
+        MATCHFILE_SA()
+        MATCHFILE_SU()
+        MATCHFILE_VE()
+        MATCHFILE_JU()
+        'Parallel.Invoke(Sub() MATCHFILE_MA(), Sub() MATCHFILE_ME(), Sub() MATCHFILE_MO(), Sub() MATCHFILE_JU(), Sub() MATCHFILE_SA(), Sub() MATCHFILE_SU(), Sub() MATCHFILE_VE())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile Program Finished at: " + DateTime.Now.ToString()
         NumberOfRecordsInMatchFile()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Time taken : " + DateTime.Now.Subtract(ST).ToString()
@@ -146,7 +146,7 @@ Module H10_v1_WithoutParallel
         Next
         connection.Close()
     End Sub
-    Sub Match_File_ALL()
+    Sub MATCHFILE_ALL()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_Planets Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "AL"
         Dim a8(8) As String
@@ -207,7 +207,7 @@ Module H10_v1_WithoutParallel
                 Sub() Process_match_Key_set_ALL(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_planets Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MA()
+    Sub MATCHFILE_MA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MA"
         Dim a8(8) As String
@@ -269,7 +269,7 @@ Module H10_v1_WithoutParallel
         '       Sub() Process_match_Key_set_MA(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_JU()
+    Sub MATCHFILE_JU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "JU"
         Dim a8(8) As String
@@ -331,7 +331,7 @@ Module H10_v1_WithoutParallel
         '        Sub() Process_match_Key_set_JU(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SA()
+    Sub MATCHFILE_SA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SA"
         Dim a8(8) As String
@@ -393,7 +393,7 @@ Module H10_v1_WithoutParallel
         '        Sub() Process_match_Key_set_SA(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_ME()
+    Sub MATCHFILE_ME()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "ME"
         Dim a8(8) As String
@@ -455,7 +455,7 @@ Module H10_v1_WithoutParallel
         '        Sub() Process_match_Key_set_ME(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MO()
+    Sub MATCHFILE_MO()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MO"
         Dim a8(8) As String
@@ -517,7 +517,7 @@ Module H10_v1_WithoutParallel
         '        Sub() Process_match_Key_set_MO(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_VE()
+    Sub MATCHFILE_VE()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "VE"
         Dim a8(8) As String
@@ -579,7 +579,7 @@ Module H10_v1_WithoutParallel
         '        Sub() Process_match_Key_set_VE(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SU()
+    Sub MATCHFILE_SU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SU"
         Dim a8(8) As String
@@ -1538,7 +1538,7 @@ Module H10_v1_WithoutParallel
                     con.ConnectionString = connstr
                     con.Open()
                     cmd.Connection = con
-                    cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
+                    cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
                     duplicates += 1
@@ -1552,25 +1552,25 @@ Module H10_v1_WithoutParallel
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("SELECT * FROM MATCH_FILE;", con)
+        Dim cmd As New SqlCommand("SELECT * FROM MATCHFILE;", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString())
         da.Fill(ds)
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString())
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCH_FILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCHFILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         connection.Close()
     End Sub
-    Sub TruncateMatch_File()
+    Sub TruncateMATCHFILE()
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Try
             con.ConnectionString = connstr
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "TRUNCATE TABLE MATCH_FILE;"
+            cmd.CommandText = "TRUNCATE TABLE MATCHFILE;"
             cmd.ExecuteNonQuery()
         Catch ex As Exception
         Finally

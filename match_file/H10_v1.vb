@@ -13,31 +13,38 @@ Module H10_v1
     Dim ThreadEndCounter = 0
     Dim duplicates = 0
     'Dim connstr = "data source=49.50.103.132;initial catalog=HEADLETTERS10;integrated security=False;User Id=sa;password=pSI)TA1t0K[)"
-    Dim connstr = "data source=WIN-KSTUPT6CJRC;initial catalog=HEADLETTERS10;integrated security=True;multipleactiveresultsets=True;"
+    Dim connstr = "data source=WIN-KSTUPT6CJRC;initial catalog=HEADLETTERS_ENGINE;integrated security=True;multipleactiveresultsets=True;"
     'Dim connstr = "data source=DESKTOP-JBRFH9E;initial catalog=testdb;integrated security=True;"
     Sub Main()
         Dim ST As DateTime = DateTime.Now
         ConsoleLogs = ConsoleLogs + "Sending Start Mail at: " + DateTime.Now.ToString()
-        EmailNotify.SendEmail("headletters10 Logic Test for (ALL) " + ST.ToString(), ST, "start")
+        ' EmailNotify.SendEmail("headletters10 Logic Test for (ALL) " + ST.ToString(), ST, "end")
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Start Mail Sent at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Fetching CUSP Details at: " + DateTime.Now.ToString()
-        FillCusp()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "CUSP Details Fetched at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Initiating MatchFile Program at: " + DateTime.Now.ToString()
-        TruncateMatch_File()
-        Parallel.Invoke(Sub() Match_File_MA(), Sub() Match_File_ME(), Sub() Match_File_MO(), Sub() Match_File_JU(), Sub() Match_File_SA(), Sub() Match_File_SU(), Sub() Match_File_VE())
+        FillCusp("vcdubai@gmail.com", "3")
+        DeleteRecordFromMATCHFILE("vcdubai@gmail.com", "3")
+        MATCHFILE_MA()
+        MATCHFILE_ME()
+        MATCHFILE_MO()
+        MATCHFILE_JU()
+        MATCHFILE_SA()
+        MATCHFILE_SU()
+        MATCHFILE_VE()
+        'Parallel.Invoke(Sub() MATCHFILE_MA(), Sub() MATCHFILE_ME(), Sub() MATCHFILE_MO(), Sub() MATCHFILE_JU(), Sub() MATCHFILE_SA(), Sub() MATCHFILE_SU(), Sub() MATCHFILE_VE())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile Program Finished at: " + DateTime.Now.ToString()
         NumberOfRecordsInMatchFile()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Time taken : " + DateTime.Now.Subtract(ST).ToString()
         Console.WriteLine("TOTAL TIME TAKEN IS : " + DateTime.Now.Subtract(ST).ToString())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Duplicates: " + duplicates.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Sending Finish Mail at: " + DateTime.Now.ToString()
-        EmailNotify.SendEmail("headletters10 Logic Test for (ALL) " + ST.ToString(), ST, "end")
+        'EmailNotify.SendEmail("headletters10 Logic Test for (ALL) " + ST.ToString(), ST, "end")
         ConsoleLogs = ConsoleLogs + "Finish Mail Sent."
         'Console.ReadKey()
     End Sub
-    Sub FillCusp()
-        Dim SelectCUSP = "SELECT * FROM CUSP;"
+    Sub FillCusp(ByRef UID As String, ByRef HID As String)
+        Dim SelectCUSP = "SELECT * FROM HEADLETTERS_ENGINE.DBO.CUSP WHERE UID = '" + UID + "' AND HID = '" + HID + "';"
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
@@ -139,7 +146,7 @@ Module H10_v1
         Next
         connection.Close()
     End Sub
-    Sub Match_File_ALL()
+    Sub MATCHFILE_ALL()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_Planets Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "AL"
         Dim a8(8) As String
@@ -200,14 +207,14 @@ Module H10_v1
                 Sub() Process_match_Key_set_ALL(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ALL_planets Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MA()
+    Sub MATCHFILE_MA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MA"
         Dim a8(8) As String
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("SELECT * FROM F2BASE WHERE p1 = 'MA';", con)
+        Dim cmd As New SqlCommand("SELECT * FROM F2BASE WHERE P1 = 'MA';", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Select * From F2BASE For (MA) Started at: " + DateTime.Now.ToString()
@@ -223,45 +230,10 @@ Module H10_v1
                Sub() Process_match_Key_set_MA(ds, m_planet),
                Sub() Process_match_Key_set_MA(ds, m_planet),
                Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
-               Sub() Process_match_Key_set_MA(ds, m_planet),
                Sub() Process_match_Key_set_MA(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_JU()
+    Sub MATCHFILE_JU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "JU"
         Dim a8(8) As String
@@ -284,45 +256,10 @@ Module H10_v1
                 Sub() Process_match_Key_set_JU(ds, m_planet),
                 Sub() Process_match_Key_set_JU(ds, m_planet),
                 Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
-                Sub() Process_match_Key_set_JU(ds, m_planet),
                 Sub() Process_match_Key_set_JU(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_JU Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SA()
+    Sub MATCHFILE_SA()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SA"
         Dim a8(8) As String
@@ -345,45 +282,10 @@ Module H10_v1
                 Sub() Process_match_Key_set_SA(ds, m_planet),
                 Sub() Process_match_Key_set_SA(ds, m_planet),
                 Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
-                Sub() Process_match_Key_set_SA(ds, m_planet),
                 Sub() Process_match_Key_set_SA(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SA Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_ME()
+    Sub MATCHFILE_ME()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "ME"
         Dim a8(8) As String
@@ -406,45 +308,10 @@ Module H10_v1
                 Sub() Process_match_Key_set_ME(ds, m_planet),
                 Sub() Process_match_Key_set_ME(ds, m_planet),
                 Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
-                Sub() Process_match_Key_set_ME(ds, m_planet),
                 Sub() Process_match_Key_set_ME(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_ME Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_MO()
+    Sub MATCHFILE_MO()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "MO"
         Dim a8(8) As String
@@ -467,45 +334,10 @@ Module H10_v1
                 Sub() Process_match_Key_set_MO(ds, m_planet),
                 Sub() Process_match_Key_set_MO(ds, m_planet),
                 Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
-                Sub() Process_match_Key_set_MO(ds, m_planet),
                 Sub() Process_match_Key_set_MO(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_MO Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_VE()
+    Sub MATCHFILE_VE()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "VE"
         Dim a8(8) As String
@@ -528,45 +360,10 @@ Module H10_v1
                 Sub() Process_match_Key_set_VE(ds, m_planet),
                 Sub() Process_match_Key_set_VE(ds, m_planet),
                 Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
-                Sub() Process_match_Key_set_VE(ds, m_planet),
                 Sub() Process_match_Key_set_VE(ds, m_planet))
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_VE Program finished at: " + DateTime.Now.ToString()
     End Sub
-    Sub Match_File_SU()
+    Sub MATCHFILE_SU()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile_SU Program Started at: " + DateTime.Now.ToString()
         Dim m_planet = "SU"
         Dim a8(8) As String
@@ -585,41 +382,6 @@ Module H10_v1
         counter_SU = ds.Tables(0).Rows.Count - 1
         connection.Close()
         Parallel.Invoke(
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
-                Sub() Process_match_Key_set_SU(ds, m_planet),
                 Sub() Process_match_Key_set_SU(ds, m_planet),
                 Sub() Process_match_Key_set_SU(ds, m_planet),
                 Sub() Process_match_Key_set_SU(ds, m_planet),
@@ -1455,15 +1217,15 @@ Module H10_v1
                 For i As Integer = 0 To c
                     pstr2 = pstr2 + Cuspp(i)
                 Next
-                Dim uid As String = "XXXXXXXXXX"
-                Dim hid As String = "100001"
+                Dim uid As String = "vcdubai@gmail.com"
+                Dim hid As String = "3"
                 Dim con As New SqlConnection
                 Dim cmd As New SqlCommand
                 Try
                     con.ConnectionString = connstr
                     con.Open()
                     cmd.Connection = con
-                    cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
+                    cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
                     duplicates += 1
@@ -1477,25 +1239,25 @@ Module H10_v1
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("SELECT * FROM MATCH_FILE;", con)
+        Dim cmd As New SqlCommand("SELECT * FROM MATCHFILE;", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Started at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Started at: " + DateTime.Now.ToString())
         da.Fill(ds)
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE Ended at: " + DateTime.Now.ToString())
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCH_FILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCHFILE are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         connection.Close()
     End Sub
-    Sub TruncateMatch_File()
+    Sub DeleteRecordFromMATCHFILE(ByRef UID As String, ByRef HID As String)
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Try
             con.ConnectionString = connstr
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "TRUNCATE TABLE MATCH_FILE;"
+            cmd.CommandText = "DELETE FROM HEADLETTERS_ENGINE.DBO.MATCHFILE WHERE PLHUSERID = '" + UID + "' AND PLHID = '" + HID + "';"
             cmd.ExecuteNonQuery()
         Catch ex As Exception
         Finally

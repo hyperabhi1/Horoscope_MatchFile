@@ -18,9 +18,9 @@ Module test
         FillCusp()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "CUSP Details Fetched at: " + DateTime.Now.ToString()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Initiating MatchFile Program at: " + DateTime.Now.ToString()
-        TruncateMatch_File_ASC()
-        Match_File_ALL()
-        'Parallel.Invoke(Sub() Match_File_MA(), Sub() Match_File_ME(), Sub() Match_File_MO(), Sub() Match_File_JU(), Sub() Match_File_SA(), Sub() Match_File_SU(), Sub() Match_File_VE())
+        TruncateMATCHFILE_ASC()
+        MATCHFILE_ALL()
+        'Parallel.Invoke(Sub() MATCHFILE_MA(), Sub() MATCHFILE_ME(), Sub() MATCHFILE_MO(), Sub() MATCHFILE_JU(), Sub() MATCHFILE_SA(), Sub() MATCHFILE_SU(), Sub() MATCHFILE_VE())
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "MatchFile Program Finished at: " + DateTime.Now.ToString()
         NumberOfRecordsInMatchFileASC()
         ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "Total Time taken : " + DateTime.Now.Subtract(ST).ToString()
@@ -134,7 +134,7 @@ Module test
         Next
         connection.Close()
     End Sub
-    Sub Match_File_ALL()
+    Sub MATCHFILE_ALL()
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
@@ -297,10 +297,10 @@ Module test
                     con.ConnectionString = connstr
                     con.Open()
                     cmd.Connection = con
-                    cmd.CommandText = "INSERT INTO MATCH_FILE_ASC VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
+                    cmd.CommandText = "INSERT INTO MATCHFILE_ASC VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + cloc + "','" + pstr2 + "');"
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
-                    If ex.Message.Contains("Violation of PRIMARY KEY constraint 'PK_KeyCheckASC'. Cannot insert duplicate key in object 'dbo.MATCH_FILE_ASC'") Then
+                    If ex.Message.Contains("Violation of PRIMARY KEY constraint 'PK_KeyCheckASC'. Cannot insert duplicate key in object 'dbo.MATCHFILE_ASC'") Then
                         duplicates += 1
                     End If
                     Console.WriteLine(ex.StackTrace)
@@ -315,25 +315,25 @@ Module test
         Dim con As New SqlConnection(connstr)
         Dim connection As SqlConnection = New SqlConnection(connstr)
         connection.Open()
-        Dim cmd As New SqlCommand("SELECT * FROM MATCH_FILE_ASC;", con)
+        Dim cmd As New SqlCommand("SELECT * FROM MATCHFILE_ASC;", con)
         Dim da As New SqlDataAdapter(cmd)
         Dim ds As New DataSet()
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE_ASC Started at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE_ASC Started at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE_ASC Started at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE_ASC Started at: " + DateTime.Now.ToString())
         da.Fill(ds)
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCH_FILE_ASC Ended at: " + DateTime.Now.ToString()
-        Console.WriteLine("SELECT COUNT(*) FROM MATCH_FILE_ASC Ended at: " + DateTime.Now.ToString())
-        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCH_FILE_ASC are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "SELECT COUNT(*) FROM MATCHFILE_ASC Ended at: " + DateTime.Now.ToString()
+        Console.WriteLine("SELECT COUNT(*) FROM MATCHFILE_ASC Ended at: " + DateTime.Now.ToString())
+        ConsoleLogs = ConsoleLogs + Environment.NewLine + "<br>" + "<b>Total Records in MATCHFILE_ASC are: " + ds.Tables(0).Rows.Count.ToString() + "</b>"
         connection.Close()
     End Sub
-    Sub TruncateMatch_File_ASC()
+    Sub TruncateMATCHFILE_ASC()
         Dim con As New SqlConnection
         Dim cmd As New SqlCommand
         Try
             con.ConnectionString = connstr
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "TRUNCATE TABLE MATCH_FILE_ASC;"
+            cmd.CommandText = "TRUNCATE TABLE MATCHFILE_ASC;"
             cmd.ExecuteNonQuery()
         Catch ex As Exception
         Finally

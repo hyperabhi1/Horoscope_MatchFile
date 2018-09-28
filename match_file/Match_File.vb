@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Module Match_File
+Module MATCHFILE
     Dim S1(12) As String
     Dim c01(), c02(), c03(), c04(), c05(), c06(), c07(), c08(), c09(), c10(), c11(), c12() As String
     Dim m_planet As String = "MA"
@@ -14,10 +14,10 @@ Module Match_File
     Sub Main()
 
         Dim starttime As DateTime = DateTime.Now
-        EmailNotify.SendEmail("Match_File_MA (NEW sql WAY) 50 threads Started", starttime, "start")
+        EmailNotify.SendEmail("MATCHFILE_MA (NEW sql WAY) 50 threads Started", starttime, "start")
         Console.WriteLine(starttime)
         MakeCusp_checkHouse()
-        EmailNotify.SendEmail("Match_File_MA (NEW sql WAY) 50 threads Ended", starttime, "end")
+        EmailNotify.SendEmail("MATCHFILE_MA (NEW sql WAY) 50 threads Ended", starttime, "end")
         Console.WriteLine("TOTAL TIME TAKEN IS : " + DateTime.Now.Subtract(starttime).ToString())
         'Console.ReadKey()
     End Sub
@@ -1332,7 +1332,7 @@ Module Match_File
                 con.ConnectionString = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
+                cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
                 cmd.ExecuteNonQuery()
 
             Catch ex As Exception
@@ -1504,7 +1504,7 @@ Module Match_File
                 con.ConnectionString = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
+                cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
                 cmd.ExecuteNonQuery()
 
             Catch ex As Exception
@@ -1676,7 +1676,7 @@ Module Match_File
                 con.ConnectionString = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
+                cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
                 cmd.ExecuteNonQuery()
 
             Catch ex As Exception
@@ -1848,7 +1848,7 @@ Module Match_File
                 con.ConnectionString = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
+                cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
                 cmd.ExecuteNonQuery()
 
             Catch ex As Exception
@@ -2023,7 +2023,7 @@ Module Match_File
                 con.ConnectionString = "data source=WIN-KSTUPT6CJRC;initial catalog=ASTROLOGYSOFTWARE_DB;integrated security=True;multipleactiveresultsets=True;"
                 con.Open()
                 cmd.Connection = con
-                cmd.CommandText = "INSERT INTO MATCH_FILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
+                cmd.CommandText = "INSERT INTO MATCHFILE VALUES ('" + uid + "','" + hid + "','" + m_planet + "','" + m_key + "','" + pstr1 + "','" + cloc + "','" + pstr2 + "','" + m_str + "');"
                 cmd.ExecuteNonQuery()
 
             Catch ex As Exception
